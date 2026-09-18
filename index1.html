@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>G&P - Amor em Códigos Style</title>
+  <style>
+    :root {
+      --netflix-red: #E50914;
+      --bg-color: #141414;
+      --card-bg: #181818;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* ABERTURA ESTILO NETFLIX */
+    #intro {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: fadeOut 1s ease-in-out 3s forwards;
+    }
+
+    .intro-logo {
+      font-size: 70px;
+      font-weight: 900;
+      color: var(--netflix-red);
+      letter-spacing: 3px;
+      animation: zoomIn 2.5s ease-out forwards;
+      text-shadow: 0 0 20px rgba(229, 9, 20, 0.6);
+    }
+
+    @keyframes zoomIn {
+      0% { transform: scale(0.6); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: scale(1.1); opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    /* NAVBAR */
+    header {
+      position: fixed;
+      top: 0; width: 100%;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+      z-index: 100;
+    }
+
+    .brand {
+      color: var(--netflix-red);
+      font-size: 22px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    /* BANNER PRINCIPAL (HERO) */
+    .hero {
+      position: relative;
+      min-height: 78vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 120px 40px 40px 40px;
+      background: linear-gradient(90deg, rgba(0,0,0,0.88) 8%, rgba(0,0,0,0.52) 35%, rgba(0,0,0,0.16) 100%),
+                  url('..//amor/imgs/fundo eu e ela ESPELHO.jpg') center/cover no-repeat;
+      box-shadow: inset 0 -120px 80px rgba(0, 0, 0, 0.7);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(20,20,20,1) 0%, rgba(20,20,20,0.1) 40%, rgba(20,20,20,0.05) 100%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 620px;
+      margin-bottom: 10px;
+    }
+
+    .tag {
+      color: #46d369;
+      font-weight: bold;
+      margin-bottom: 12px;
+      font-size: 14px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      font-weight: 800;
+      margin-bottom: 18px;
+      line-height: 1.06;
+      letter-spacing: -0.04em;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.45);
+    }
+
+    /* CONTADOR DE TEMPO */
+    .timer-container {
+      background: rgba(0,0,0,0.5);
+      border-left: 4px solid var(--netflix-red);
+      padding: 12px 16px;
+      margin: 18px 0 20px;
+      border-radius: 4px;
+      backdrop-filter: blur(2px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .timer-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: #aaa;
+      letter-spacing: 1px;
+    }
+
+    .timer-value {
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    /* BOTÃO PLAY MÚSICA */
+    .btn-play {
+      background-color: var(--netflix-red);
+      color: #fff;
+      border: none;
+      padding: 12px 22px;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 8px 18px 0;
+      transition: transform 0.2s, filter 0.2s;
+      box-shadow: 0 10px 18px rgba(229, 9, 20, 0.28);
+    }
+
+    .btn-play:hover {
+      transform: scale(1.03);
+      filter: brightness(1.08);
+    }
+
+    .btn-video {
+      background-color: rgba(255,255,255,0.18);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.4);
+      padding: 12px 22px;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 18px 0;
+      text-decoration: none;
+      transition: transform 0.2s, background-color 0.2s;
+      backdrop-filter: blur(2px);
+    }
+
+    .btn-video:hover {
+      background-color: rgba(255,255,255,0.28);
+      transform: scale(1.03);
+    }
+
+    .hero-text {
+      max-width: 580px;
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.82);
+    }
+
+    /* SEÇÃO DE CARROSSEL / EPISÓDIOS */
+    .section-episodes {
+      padding: 30px 40px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .carousel {
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+      padding-bottom: 15px;
+      scroll-behavior: smooth;
+    }
+
+    .carousel::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .carousel::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 3px;
+    }
+
+    .ep-card {
+      flex: 0 0 240px;
+      background: var(--card-bg);
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .ep-card:hover {
+      transform: scale(1.05);
+    }
+
+    .ep-card img {
+      width: 100%;
+      height: 135px;
+      object-fit: cover;
+    }
+
+    .ep-card-body {
+      padding: 10px;
+    }
+
+    .ep-card-title {
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    /* MODAL EXIBIÇÃO DE FOTO GRANDE E TEXTO */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.85);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-box {
+      background: var(--card-bg);
+      max-width: 600px;
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px; right: 10px;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      border: none;
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .modal-img {
+      width: 100%;
+      max-height: 320px;
+      object-fit: cover;
+    }
+
+    .modal-content {
+      padding: 20px;
+    }
+
+    .modal-title {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .modal-desc {
+      font-size: 14px;
+      color: #ccc;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        min-height: 68vh;
+        padding: 100px 20px 22px 20px;
+      }
+      .hero-title { font-size: 30px; }
+      .hero-text { font-size: 14px; }
+      .btn-play, .btn-video { width: 100%; justify-content: center; margin-right: 0; }
+      .btn-video { margin-top: 10px; }
+      .section-episodes { padding: 20px; }
+      .ep-card { flex: 0 0 180px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- INTRO NETFLIX -->
+  <div id="intro">
+    <div class="intro-logo">GUSTAVO & PATRÍCIA</div>
+  </div>
+
+  <!-- MÚSICA DE FUNDO -->
+  <audio id="bgMusic" loop>
+    <source src="./sons/Gente.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- HEADER -->
+  <header>
+    <a href="#" class="brand">AMORFLIX</a>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="tag">100% Relevante para você</div>
+      <h1 class="hero-title">Nossa História Sem Fim</h1>
+
+      <div class="timer-container">
+        <div class="timer-label">Juntos Há:</div>
+        <div class="timer-value" id="timer">Calculando...</div>
+      </div>
+
+      <button class="btn-play" id="playBtn">▶ Tocando Música</button>
+      <a class="btn-video" href="https://drive.google.com/file/d/1QMTq9Qbb0G4m8H8ltR5IArGsmA1oNWih/view?usp=drive_link" target="_blank" rel="noopener noreferrer">▶ Assistir Vídeo</a>
+
+      <p class="hero-text">
+        Uma história de amor escrita dia a dia. Todos os capítulos mostram o quanto nosso amor fortalece a cada momento vivido juntos.
+      </p>
+    </div>
+  </section>
+
+  <!-- CARROSSEL DE EPISÓDIOS (8 FOTOS) -->
+  <section class="section-episodes">
+    <h2 class="section-title">Episódios da Nossa Vida</h2>
+    <div class="carousel" id="carousel"></div>
+  </section>
+
+  <!-- MODAL -->
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <button class="modal-close" id="closeBtn">&times;</button>
+      <img id="modalImg" class="modal-img" src="" alt="">
+      <div class="modal-content">
+        <h3 id="modalTitle" class="modal-title"></h3>
+        <p id="modalDesc" class="modal-desc"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 1. DATA DE INÍCIO (27/08/2007)
+    const startDate = new Date(2007, 7, 26, 0, 0, 0);
+
+    function updateTimer() {
+      const now = new Date();
+
+      let years = now.getFullYear() - startDate.getFullYear();
+      let months = now.getMonth() - startDate.getMonth();
+      let days = now.getDate() - startDate.getDate();
+
+      if (days < 0) {
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
+        months--;
+      }
+
+      if (months < 0) {
+        months += 12;
+        years--;
+      }
+
+      document.getElementById('timer').innerText = `${years} anos ${months} meses ${days} dias`;
+    }
+
+    setInterval(updateTimer, 60000);
+    updateTimer();
+
+    // 2. MÚSICA DE FUNDO
+    const music = document.getElementById('bgMusic');
+    const playBtn = document.getElementById('playBtn');
+
+    playBtn.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+        playBtn.innerText = '❚❚ Pausar Música';
+      } else {
+        music.pause();
+        playBtn.innerText = '▶ Tocar Música';
+      }
+    });
+
+    document.body.addEventListener('click', () => {
+      if (music.paused) {
+        music.play().then(() => { playBtn.innerText = '❚❚ Pausar Música'; }).catch(() => {});
+      }
+    }, { once: true });
+
+    // 3. DADOS DOS 8 EPISÓDIOS
+    const episodes = [
+      { id: 1, title: "Episódio 1: O Início", img: "./img/ep1.jpeg", desc: "O dia em que começamos a construir nossa história juntos." },
+      { id: 2, title: "Episódio 2: Viagens", img: "./img/ep2.jpeg", desc: "Todas as nossas aventuras e lugares inesquecíveis que conhecemos." },
+      { id: 3, title: "Episódio 3: Sorrisos", img: "./img/ep3.jpeg", desc: "A alegria diária de compartilhar a vida com você." },
+      { id: 4, title: "Episódio 4: Conquistas", img: "./img/ep4.jpeg", desc: "Cada sonho alcançado lado a lado ao longo dos anos." },
+      { id: 5, title: "Episódio 5: Companheirismo", img: "./img/ep5.jpeg", desc: "O apoio nos momentos calmos e nos desafios." },
+      { id: 6, title: "Episódio 6: Família", img: "./img/ep6.jpeg", desc: "Nosso porto seguro e o amor que nos une diariamente." },
+      { id: 7, title: "Episódio 7: O Lar", img: "./img/ep7.jpeg", desc: "Estar ao seu lado é saber que estou em casa." },
+      { id: 8, title: "Episódio 8: O Para Sempre", img: "./img/ep8.jpeg", desc: "O futuro brilhante que ainda temos pela frente." }
+    ];
+
+    // 4. PREENCHER O CARROSSEL E ABRIR MODAL
+    const carousel = document.getElementById('carousel');
+    const modal = document.getElementById('modal');
+    const hero = document.querySelector('.hero');
+    let currentEpisode = 0;
+
+    function updateHeroBackground() {
+      hero.style.backgroundImage = `linear-gradient(to right, rgba(20,20,20,0.95) 20%, rgba(20,20,20,0.4)), url('${episodes[currentEpisode].img}')`;
+      currentEpisode = (currentEpisode + 1) % episodes.length;
+    }
+
+    updateHeroBackground();
+    setInterval(updateHeroBackground, 5000);
+
+    episodes.forEach(ep => {
+      const card = document.createElement('div');
+      card.className = 'ep-card';
+      card.innerHTML = `
+        <img src="${ep.img}" alt="${ep.title}">
+        <div class="ep-card-body">
+          <div class="ep-card-title">${ep.title}</div>
+        </div>
+      `;
+      card.onclick = () => {
+        document.getElementById('modalImg').src = ep.img;
+        document.getElementById('modalTitle').innerText = ep.title;
+        document.getElementById('modalDesc').innerText = ep.desc;
+        modal.style.display = 'flex';
+      };
+      carousel.appendChild(card);
+    });
+
+    document.getElementById('closeBtn').onclick = () => modal.style.display = 'none';
+    modal.onclick = (e) => { if (e.target === modal) modal.style.display = 'none'; };
+  </script>
+</body>
+</html>
